@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-@Component({selector:'app-home',standalone:true,templateUrl:'./home.component.html',styleUrl:'./home.component.scss'})
+import { AfterViewInit, Component, OnDestroy, ViewEncapsulation } from '@angular/core';
+@Component({selector:'app-home',encapsulation:ViewEncapsulation.None,standalone:true,templateUrl:'./home.component.html',styleUrl:'./home.component.scss'})
 export class HomeComponent implements AfterViewInit, OnDestroy {
  private cleanup: (()=>void)|undefined;
  ngAfterViewInit(){

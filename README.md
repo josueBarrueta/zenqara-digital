@@ -16,4 +16,5 @@ npm start
 npm run build
 ```
 
-La web compilada se guarda en `dist/browser/`. El repositorio permanece privado.
+La web compilada se guarda en `dist/`. El repositorio permanece privado.
+

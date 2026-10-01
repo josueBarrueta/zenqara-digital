@@ -33,7 +33,10 @@
               "src/styles.scss"
             ],
             "allowedCommonJsDependencies": [],
-            "outputPath": "../dist"
+            "outputPath": {
+              "base": "../dist",
+              "browser": ""
+            }
           },
           "configurations": {
             "production": {
