@@ -61,7 +61,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
         const reduced = context.conditions?.["reduced"];
         const mobile = context.conditions?.["mobile"];
         const cards = root.querySelectorAll(
-          ".service-list article, .steps article, .contact h2",
+          ".service-list article, .steps article, .contact h2, .device-layout article, .maintenance-items article, .checklist-grid article",
         );
         if (reduced) {
           gsap.set(demo, { "--build": 1, "--narrow": 0 });
@@ -135,6 +135,54 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
             ease: "power2.out",
             scrollTrigger: { trigger: card, start: "top 88%", once: true },
           }),
+        );
+
+        root
+          .querySelectorAll(".word-reveal span")
+          .forEach((word) =>
+            gsap.fromTo(
+              word,
+              { opacity: 0.15, y: 30 },
+              {
+                opacity: 1,
+                y: 0,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: word,
+                  start: "top 85%",
+                  end: "top 45%",
+                  scrub: 0.5,
+                },
+              },
+            ),
+          );
+        root.querySelectorAll(".stack-card").forEach((card, index) => {
+          if (index < 2)
+            gsap.to(card, {
+              scale: mobile ? 0.97 : 0.94,
+              ease: "none",
+              transformOrigin: "top center",
+              scrollTrigger: {
+                trigger: card.nextElementSibling,
+                start: "top 80%",
+                end: "top 25%",
+                scrub: 0.5,
+              },
+            });
+        });
+        gsap.fromTo(
+          root.querySelector(".responsive-section h2"),
+          { y: 30 },
+          {
+            y: -15,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".responsive-section",
+              start: "top 80%",
+              end: "bottom top",
+              scrub: 0.6,
+            },
+          },
         );
         return () => gsap.killTweensOf([title, description]);
       },
