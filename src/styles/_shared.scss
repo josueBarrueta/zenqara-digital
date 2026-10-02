@@ -1,0 +1,172 @@
+:root {
+  color-scheme: dark;
+  --bg: #080808;
+  --line: #292929;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #f7f7f7;
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 16px;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 6px;
+}
+.brand span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 6px;
+  text-align: center;
+  margin-top: 4px;
+}
+nav {
+  display: flex;
+  gap: 34px;
+  align-items: center;
+  font-size: 14px;
+}
+nav a:hover {
+  color: #bbb;
+}
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #aaa;
+  margin: 0 0 30px;
+  line-height: 1.7;
+}
+h1,
+h2,
+h3 {
+  font-family: "Josefin Sans", Arial, sans-serif;
+  margin: 0;
+}
+.section-heading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 50px;
+}
+.section-heading .eyebrow {
+  grid-column: 1/-1;
+}
+h2 {
+  font-size: clamp(36px, 4.2vw, 64px);
+}
+.section-heading > p:last-child {
+  max-width: 380px;
+  justify-self: end;
+  color: #999;
+  line-height: 1.8;
+  align-self: end;
+}
+.brand {
+  font-size: 24px;
+  font-family: "Josefin Sans", Arial, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand-word {
+  display: block;
+}
+.brand .brand-subtitle {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  text-align: center;
+  margin-top: 7px;
+}
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+h1,
+h2 {
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.13;
+}
+em {
+  color: #adadad;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 300;
+  letter-spacing: inherit;
+}
+h3 {
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.extra-section {
+  padding: 110px 6%;
+}
+@media (max-width: 800px) {
+  .brand {
+    font-size: 19px;
+  }
+  nav {
+    gap: 16px;
+  }
+  nav a:nth-child(2) {
+    display: none;
+  }
+  .section-heading {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .section-heading > p:last-child {
+    justify-self: start;
+  }
+}
+@media (max-width: 700px) {
+  nav {
+    gap: 15px;
+  }
+  nav a:first-child {
+    display: none;
+  }
+  .brand {
+    gap: 8px;
+    font-size: 18px;
+    letter-spacing: 0.14em;
+  }
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+  }
+  .brand .brand-subtitle {
+    font-size: 9px;
+  }
+  .extra-section {
+    padding: 75px 6%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+// Stop decorative loops when their section or browser tab is out of view.
+.hero[data-animated="false"] .hero-orbit span,
+.service-list article[data-animated="false"] .service-sketch svg * {
+  animation-play-state: paused;
+}

@@ -1,0 +1,73 @@
+footer .brand {
+  color: #ddd;
+  font-size: 18px;
+}
+footer p {
+  line-height: 1.6;
+}
+footer {
+  padding: 35px 5%;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+  color: #888;
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+.footer-info p {
+  margin: 0 0 8px;
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 16px 24px;
+}
+.footer-links a {
+  color: #bbb;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+}
+.footer-links a:hover {
+  color: #fff;
+}
+.footer-links .footer-email {
+  overflow-wrap: anywhere;
+}
+.footer-email span {
+  min-width: 0;
+}
+.footer-links a:focus-visible {
+  outline: 2px solid #eee;
+  outline-offset: 7px;
+}
+.footer-email {
+  --envelope-background: #111;
+}
+@media (min-width: 1600px) {
+  footer {
+    max-width: 1600px;
+    margin: auto;
+  }
+}
+@media (max-width: 800px) {
+  footer {
+    flex-wrap: wrap;
+    padding: 30px 6%;
+    align-items: flex-start;
+  }
+  footer p {
+    display: none;
+  }
+  .footer-links {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .footer-links a:nth-child(2) {
+    display: inline-flex;
+  }
+}

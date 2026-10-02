@@ -1,0 +1,145 @@
+<section id="servicios" class="services">
+  <div class="section-heading">
+    <p class="eyebrow">01 / LO QUE HACEMOS</p>
+    <h2>Construimos la web.<br />Cuidamos lo que hay detrás.</h2>
+    <p>
+      Diseño, desarrollo y continuidad técnica para las páginas que creamos para
+      nuestros clientes.
+    </p>
+  </div>
+  <div class="service-list">
+    <article [class.is-open]="isServiceOpen(1)">
+      <h3 class="service-heading">
+        <button
+          type="button"
+          id="service-trigger-1"
+          class="service-trigger"
+          [attr.aria-expanded]="isServiceOpen(1)"
+          aria-controls="service-panel-1"
+          (click)="toggleService(1)"
+        >
+          <span class="number">01</span>
+          <span class="service-sketch service-sketch--design" aria-hidden="true"
+            ><svg viewBox="0 0 150 110" fill="none">
+              <rect x="15" y="14" width="120" height="80" rx="4" />
+              <path d="M15 30H135M24 22H26M32 22H34M26 44H78M26 53H67" />
+              <rect class="sketch-fill" x="26" y="65" width="28" height="16" />
+              <rect x="90" y="42" width="33" height="39" />
+              <path
+                class="sketch-pointer"
+                d="M104 73L114 97L118 87L128 84Z"
+              /></svg></span
+          ><span class="service-title">Creación de páginas web</span
+          ><span class="service-tag">TU PRESENCIA</span
+          ><span class="service-icon" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <div
+        id="service-panel-1"
+        class="service-panel"
+        role="region"
+        aria-labelledby="service-trigger-1"
+        [attr.inert]="isServiceOpen(1) ? null : ''"
+        [attr.aria-hidden]="!isServiceOpen(1)"
+        (transitionend)="onPanelTransition($event)"
+      >
+        <div class="service-panel-inner">
+          <div class="service-content">
+            <p>
+              Diseñamos las páginas y organizamos sus textos e imágenes para
+              presentar tu empresa y facilitar el contacto.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article [class.is-open]="isServiceOpen(2)">
+      <h3 class="service-heading">
+        <button
+          type="button"
+          id="service-trigger-2"
+          class="service-trigger"
+          [attr.aria-expanded]="isServiceOpen(2)"
+          aria-controls="service-panel-2"
+          (click)="toggleService(2)"
+        >
+          <span class="number">02</span>
+          <span class="service-sketch service-sketch--code" aria-hidden="true"
+            ><svg viewBox="0 0 150 110" fill="none">
+              <path
+                class="sketch-bracket"
+                d="M48 33L23 55L48 77M102 33L127 55L102 77"
+              />
+              <path d="M84 23L65 87" />
+              <path class="sketch-guide" d="M20 99H130M20 11H130" /></svg></span
+          ><span class="service-title">Desarrollo web</span
+          ><span class="service-tag">TU EXPERIENCIA</span
+          ><span class="service-icon" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <div
+        id="service-panel-2"
+        class="service-panel"
+        role="region"
+        aria-labelledby="service-trigger-2"
+        [attr.inert]="isServiceOpen(2) ? null : ''"
+        [attr.aria-hidden]="!isServiceOpen(2)"
+        (transitionend)="onPanelTransition($event)"
+      >
+        <div class="service-panel-inner">
+          <div class="service-content">
+            <p>
+              Desarrollamos las funciones que necesitan tus visitantes o tu
+              equipo, según el alcance acordado para el proyecto.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article [class.is-open]="isServiceOpen(3)">
+      <h3 class="service-heading">
+        <button
+          type="button"
+          id="service-trigger-3"
+          class="service-trigger"
+          [attr.aria-expanded]="isServiceOpen(3)"
+          aria-controls="service-panel-3"
+          (click)="toggleService(3)"
+        >
+          <span class="number">03</span>
+          <span
+            class="service-sketch service-sketch--hosting"
+            aria-hidden="true"
+            ><svg viewBox="0 0 150 110" fill="none">
+              <rect x="25" y="16" width="100" height="30" rx="5" />
+              <rect x="25" y="58" width="100" height="30" rx="5" />
+              <path d="M38 31H80M38 73H80M75 46V58" />
+              <circle class="sketch-light" cx="109" cy="31" r="3" />
+              <circle class="sketch-light" cx="109" cy="73" r="3" /></svg></span
+          ><span class="service-title">Mantenimiento de servidores web</span
+          ><span class="service-tag">TU CONTINUIDAD</span
+          ><span class="service-icon" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <div
+        id="service-panel-3"
+        class="service-panel"
+        role="region"
+        aria-labelledby="service-trigger-3"
+        [attr.inert]="isServiceOpen(3) ? null : ''"
+        [attr.aria-hidden]="!isServiceOpen(3)"
+        (transitionend)="onPanelTransition($event)"
+      >
+        <div class="service-panel-inner">
+          <div class="service-content">
+            <p>
+              Para las webs que desarrollamos, ofrecemos mantenimiento del
+              alojamiento según las condiciones acordadas.
+            </p>
+            <a href="#mantenimiento">Ver qué incluye el mantenimiento ↗</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

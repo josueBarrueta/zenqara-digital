@@ -1,0 +1,250 @@
+.service-list {
+  margin-top: 60px;
+}
+.number {
+  color: #777;
+  font-size: 14px;
+}
+.service-list p {
+  color: #aaa;
+  line-height: 1.8;
+  max-width: 650px;
+}
+.service-list ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  color: #bbb;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.service-list li {
+  border-left: 1px solid #555;
+  padding-left: 12px;
+}
+.service-tag {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #888;
+  justify-self: end;
+  padding-top: 9px;
+}
+.service-list article:hover {
+  border-color: #eee;
+}
+.service-list article {
+  border-top: 1px solid var(--line);
+  transition: border-color 0.3s;
+  display: block;
+  padding: 0;
+}
+.service-heading {
+  margin: 0;
+}
+.service-trigger {
+  display: grid;
+  grid-template-columns: 65px 150px minmax(0, 1fr) 140px 24px;
+  gap: 24px;
+  align-items: center;
+  width: 100%;
+  padding: 32px 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.services .number {
+  font-size: 32px;
+  font-weight: 300;
+  color: #666;
+}
+.service-sketch {
+  display: block;
+  width: 150px;
+}
+.service-sketch svg {
+  width: 100%;
+  height: 110px;
+  stroke: #aaa;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.service-sketch .sketch-fill {
+  fill: #333;
+  stroke: none;
+}
+.service-sketch .sketch-guide {
+  stroke: #333;
+}
+.sketch-pointer {
+  fill: #111;
+  animation: sketch-pointer 3s ease-in-out infinite;
+}
+.sketch-bracket {
+  animation: sketch-code 3s ease-in-out infinite;
+}
+.sketch-light {
+  fill: #ddd;
+  stroke: none;
+  animation: sketch-code 2s ease-in-out infinite;
+}
+.service-title {
+  font-size: clamp(22px, 2.5vw, 36px);
+  font-weight: 300;
+  min-width: 0;
+  overflow-wrap: normal;
+  line-height: 1.25;
+  transition: color 0.25s;
+}
+.service-list article:hover .service-sketch svg {
+  stroke: #eee;
+}
+@keyframes sketch-pointer {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-7px, -7px);
+  }
+}
+@keyframes sketch-code {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.service-trigger:focus-visible {
+  outline: 2px solid #eee;
+  outline-offset: 6px;
+}
+.service-trigger .service-tag {
+  padding-top: 0;
+}
+.service-trigger:hover .service-title {
+  color: #bbb;
+}
+.service-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+.service-icon::before,
+.service-icon::after {
+  content: "";
+  position: absolute;
+  background: currentColor;
+  top: 9px;
+  left: 1px;
+  width: 18px;
+  height: 1px;
+  transition: transform 0.4s;
+}
+.service-icon::after {
+  transform: rotate(90deg);
+}
+.is-open .service-icon::after {
+  transform: rotate(0);
+}
+.service-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.45s ease,
+    opacity 0.3s ease,
+    visibility 0.45s;
+}
+.is-open .service-panel {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  opacity: 1;
+}
+.service-panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+.service-content {
+  padding: 0 48px 32px 263px;
+}
+.service-content > p {
+  margin-top: 0;
+}
+.services {
+  padding: 105px 5%;
+}
+@media (max-width: 800px) {
+  .service-trigger {
+    grid-template-columns: 40px 100px minmax(0, 1fr) 24px;
+    gap: 18px;
+  }
+  .service-sketch {
+    width: 100px;
+  }
+  .services {
+    padding: 65px 6%;
+  }
+  .service-list {
+    margin-top: 35px;
+  }
+  .service-tag {
+    display: none;
+  }
+  .service-list ul {
+    display: grid;
+  }
+  .service-content {
+    padding-left: 176px;
+  }
+}
+@media (max-width: 700px) {
+  .service-trigger {
+    grid-template-columns: 25px minmax(0, 1fr) 20px;
+    grid-template-areas:
+      "number sketch icon"
+      ". title icon";
+    gap: 12px;
+    padding: 25px 0;
+  }
+  .service-sketch {
+    grid-area: sketch;
+    width: 65px;
+  }
+  .service-sketch svg {
+    height: 75px;
+  }
+  .services .number {
+    grid-area: number;
+    font-size: 18px;
+  }
+  .service-title {
+    grid-area: title;
+    font-size: 22px;
+  }
+  .service-icon {
+    grid-area: icon;
+  }
+  .service-content {
+    padding: 0 0 24px 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-sketch svg * {
+    animation: none;
+  }
+  .service-panel,
+  .service-icon::before,
+  .service-icon::after,
+  .service-title {
+    transition: none;
+  }
+}
