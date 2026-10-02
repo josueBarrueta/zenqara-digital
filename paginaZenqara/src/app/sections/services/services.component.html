@@ -1,0 +1,135 @@
+<section id="servicios" class="services">
+  <div class="section-heading">
+    <p class="eyebrow">01 / LO QUE HACEMOS</p>
+    <h2>Construimos la web.<br />Cuidamos lo que hay detrás.</h2>
+    <p>
+      Diseño, desarrollo y continuidad técnica para las páginas que creamos para
+      nuestros clientes.
+    </p>
+  </div>
+  <div class="service-list">
+    <article [class.is-open]="isServiceOpen(1)">
+      <h3 class="service-heading">
+        <button
+          type="button"
+          id="service-trigger-1"
+          class="service-trigger"
+          [attr.aria-expanded]="isServiceOpen(1)"
+          aria-controls="service-panel-1"
+          (click)="toggleService(1)"
+        >
+          <span class="number">01</span
+          ><span class="service-title">Creación de páginas web</span
+          ><span class="service-tag">TU PRESENCIA</span
+          ><span class="service-icon" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <div
+        id="service-panel-1"
+        class="service-panel"
+        role="region"
+        aria-labelledby="service-trigger-1"
+        [attr.inert]="isServiceOpen(1) ? null : ''"
+        [attr.aria-hidden]="!isServiceOpen(1)"
+        (transitionend)="onPanelTransition($event)"
+      >
+        <div class="service-panel-inner">
+          <div class="service-content">
+            <p>
+              Una web que presenta tu empresa con claridad. Organizamos el
+              contenido y damos forma a una experiencia adaptada a tu marca y a
+              las personas que la visitan.
+            </p>
+            <ul>
+              <li>Diseño adaptado a tu identidad</li>
+              <li>Experiencia en móvil y ordenador</li>
+              <li>Estructura clara para tus servicios</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article [class.is-open]="isServiceOpen(2)">
+      <h3 class="service-heading">
+        <button
+          type="button"
+          id="service-trigger-2"
+          class="service-trigger"
+          [attr.aria-expanded]="isServiceOpen(2)"
+          aria-controls="service-panel-2"
+          (click)="toggleService(2)"
+        >
+          <span class="number">02</span
+          ><span class="service-title">Desarrollo web</span
+          ><span class="service-tag">TU EXPERIENCIA</span
+          ><span class="service-icon" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <div
+        id="service-panel-2"
+        class="service-panel"
+        role="region"
+        aria-labelledby="service-trigger-2"
+        [attr.inert]="isServiceOpen(2) ? null : ''"
+        [attr.aria-hidden]="!isServiceOpen(2)"
+        (transitionend)="onPanelTransition($event)"
+      >
+        <div class="service-panel-inner">
+          <div class="service-content">
+            <p>
+              Convertimos el diseño en una página funcional. Construimos las
+              funcionalidades de tu proyecto y dejamos espacio para que tu web
+              evolucione con tu negocio.
+            </p>
+            <ul>
+              <li>Desarrollo según tu proyecto</li>
+              <li>Integraciones y funcionalidades acordadas</li>
+              <li>Ampliaciones y mejoras de la web</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+    <article [class.is-open]="isServiceOpen(3)">
+      <h3 class="service-heading">
+        <button
+          type="button"
+          id="service-trigger-3"
+          class="service-trigger"
+          [attr.aria-expanded]="isServiceOpen(3)"
+          aria-controls="service-panel-3"
+          (click)="toggleService(3)"
+        >
+          <span class="number">03</span
+          ><span class="service-title">Mantenimiento de servidores web</span
+          ><span class="service-tag">TU CONTINUIDAD</span
+          ><span class="service-icon" aria-hidden="true"></span>
+        </button>
+      </h3>
+      <div
+        id="service-panel-3"
+        class="service-panel"
+        role="region"
+        aria-labelledby="service-trigger-3"
+        [attr.inert]="isServiceOpen(3) ? null : ''"
+        [attr.aria-hidden]="!isServiceOpen(3)"
+        (transitionend)="onPanelTransition($event)"
+      >
+        <div class="service-panel-inner">
+          <div class="service-content">
+            <p>
+              Cuidamos la infraestructura de las páginas que desarrollamos para
+              nuestros clientes. Acordamos el mantenimiento necesario para
+              acompañar su funcionamiento después del lanzamiento.
+            </p>
+            <ul>
+              <li>Mantenimiento del entorno del servidor</li>
+              <li>Revisión técnica y actualizaciones acordadas</li>
+              <li>Atención a incidencias del alojamiento</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+.contact {
+  padding: 100px 5%;
+  background: #111;
+}
+.contact-bottom {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+}
+.contact-bottom p {
+  color: #aaa;
+  line-height: 1.8;
+  margin: 0;
+}
+.contact-bottom a {
+  font-size: clamp(18px, 2.3vw, 34px);
+  border-bottom: 1px solid #777;
+  padding-bottom: 10px;
+  overflow-wrap: anywhere;
+}
+.contact h2 {
+  font-size: clamp(48px, 7vw, 100px);
+}
+.contact-email > .mail-icon {
+  width: 36px;
+  height: 36px;
+}
+.contact-email small {
+  display: block;
+  margin-top: 8px;
+  color: #aaa;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.contact-email:focus-visible {
+  outline: 2px solid #eee;
+  outline-offset: 7px;
+}
+.contact-email {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  --envelope-background: #111;
+}
+@media (max-width: 800px) {
+  .contact {
+    padding: 65px 6%;
+  }
+  .contact-bottom {
+    flex-direction: column;
+    align-items: start;
+  }
+  .contact-bottom a {
+    font-size: 20px;
+  }
+  .contact-email {
+    gap: 12px;
+  }
+}

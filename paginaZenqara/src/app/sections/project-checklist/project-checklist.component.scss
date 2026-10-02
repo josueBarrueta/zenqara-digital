@@ -1,0 +1,43 @@
+.project-checklist {
+  background: #151515;
+}
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 45px 70px;
+  margin-top: 70px;
+}
+.checklist-grid article {
+  border-top: 1px solid #444;
+  padding-top: 25px;
+}
+.checklist-grid span {
+  color: #888;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 25px;
+}
+.checklist-grid p {
+  color: #aaa;
+  line-height: 1.9;
+  max-width: 440px;
+}
+.checklist-grid article h3 {
+  transition:
+    color 0.25s ease,
+    letter-spacing 0.25s ease;
+}
+.checklist-grid article:hover h3 {
+  letter-spacing: -0.025em;
+}
+@media (max-width: 700px) {
+  .checklist-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .checklist-grid article h3 {
+    transition: none;
+  }
+}

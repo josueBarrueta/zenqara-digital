@@ -1,0 +1,39 @@
+.faq h2 {
+  margin-bottom: 55px;
+}
+.faq details {
+  border-top: 1px solid #333;
+  padding: 25px 0;
+}
+.faq details p {
+  color: #aaa;
+  line-height: 1.9;
+  max-width: 750px;
+  padding: 12px 0;
+}
+.faq a {
+  text-decoration: underline;
+}
+.faq summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+}
+.faq summary {
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1.5;
+  transition: color 0.25s;
+}
+.faq summary:hover {
+  color: #aaa;
+}
+@media (max-width: 700px) {
+  .faq summary {
+    font-size: 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq summary {
+    transition: none;
+  }
+}
