@@ -20,14 +20,14 @@ La web compilada se guarda en `dist/`, fuera de `paginaZenqara/`.
 
 ## Publicación
 
-La web está publicada en https://josuebarrueta.github.io/zenqara-digital-web/.
-El repositorio público `josueBarrueta/zenqara-digital-web` contiene solo los archivos compilados; este repositorio conserva el código fuente privado.
+La web está publicada en https://josuebarrueta.github.io/zenqara-digital/.
+El repositorio público `josueBarrueta/zenqara-digital` contiene solo los archivos compilados; el repositorio `josueBarrueta/zenqara-digital-codigo` conserva el código fuente privado.
 
 Para preparar una actualización, desde `paginaZenqara/`:
 
 ```sh
 npm run check
-npm run build -- --base-href /zenqara-digital-web/
+npm run build -- --base-href /zenqara-digital/
 ```
 
 Después se actualizan los archivos del repositorio público con el contenido de `dist/`, conservando `.nojekyll`. GitHub Pages publica desde la raíz de su rama `main`. Los cambios en este repositorio de código fuente no se publican automáticamente.
