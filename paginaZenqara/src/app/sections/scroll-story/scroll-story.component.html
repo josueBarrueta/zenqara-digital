@@ -1,4 +1,5 @@
 <section
+  id="tu-web"
   class="scroll-story"
   aria-label="De la idea a una web en funcionamiento"
 >
@@ -43,6 +44,19 @@
         </div>
       </div>
     </div>
-    <span class="story-hint">SIGUE BAJANDO PARA DESCUBRIRLO</span>
+    <button
+      type="button"
+      class="story-playback"
+      [attr.aria-pressed]="paused"
+      (click)="togglePlayback()"
+      [attr.aria-label]="
+        paused
+          ? 'Reanudar la demostración automática'
+          : 'Pausar la demostración automática'
+      "
+    >
+      <span aria-hidden="true">{{ paused ? "▷" : "Ⅱ" }}</span>
+      {{ paused ? "Reanudar" : "Pausar animación" }}
+    </button>
   </div>
 </section>

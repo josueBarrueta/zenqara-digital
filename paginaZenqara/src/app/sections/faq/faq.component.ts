@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, output } from "@angular/core";
 @Component({
   selector: "app-faq",
   standalone: true,
@@ -6,4 +6,10 @@ import { Component, ViewEncapsulation } from "@angular/core";
   host: { style: "display: contents" },
   templateUrl: "./faq.component.html",
 })
-export class FaqComponent {}
+export class FaqComponent {
+  readonly layoutChange = output<void>();
+
+  onTransition(event: TransitionEvent): void {
+    if (event.propertyName === "height") this.layoutChange.emit();
+  }
+}

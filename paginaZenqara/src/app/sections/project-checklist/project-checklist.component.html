@@ -2,27 +2,301 @@
   <p class="eyebrow">ANTES DE EMPEZAR</p>
   <h2>Una buena conversación.<br />Una mejor dirección.</h2>
   <div class="checklist-grid">
-    <article>
-      <span>01</span>
-      <h3>Tu empresa</h3>
-      <p>Qué haces, a quién te diriges y qué diferencia tu propuesta.</p>
+    <article [class.is-open]="isOpen(1)">
+      <div class="checklist-overview">
+        <span class="checklist-number">01</span>
+        <div class="checklist-art checklist-art--company" aria-hidden="true">
+          <svg viewBox="0 0 240 140" fill="none">
+            <path class="art-guide" d="M22 118H218M120 15V125" />
+            <g class="art-float">
+              <rect
+                class="art-surface"
+                x="78"
+                y="32"
+                width="84"
+                height="87"
+                rx="7"
+              />
+              <path
+                d="M98 51H109M131 51H142M98 70H109M131 70H142M98 89H109M131 89H142M113 119V101H127V119"
+              />
+            </g>
+            <circle class="art-dot" cx="48" cy="79" r="5" />
+            <circle class="art-dot" cx="192" cy="59" r="5" />
+            <path class="art-guide" d="M53 79H78M162 59H187" />
+          </svg>
+        </div>
+        <h3>Tu empresa</h3>
+        <p>Qué haces, a quién te diriges y qué diferencia tu propuesta.</p>
+
+        <button
+          type="button"
+          class="checklist-toggle"
+          [attr.aria-expanded]="isOpen(1)"
+          aria-controls="checklist-panel-1"
+          [attr.aria-label]="
+            (isOpen(1) ? 'Cerrar información: ' : 'Más información: ') +
+            'Tu empresa'
+          "
+          (click)="toggle(1)"
+        >
+          {{ isOpen(1) ? "Ver menos" : "Más información" }}
+          <span aria-hidden="true">{{ isOpen(1) ? "−" : "+" }}</span>
+        </button>
+      </div>
+      <div
+        id="checklist-panel-1"
+        class="checklist-panel"
+        [class.is-open]="isOpen(1)"
+        [attr.inert]="isOpen(1) ? null : ''"
+        [attr.aria-hidden]="!isOpen(1)"
+        (transitionend)="onPanelTransition($event)"
+      >
+        <div class="checklist-panel-inner">
+          <div class="checklist-details">
+            <p>Cuéntanos la historia de tu negocio y qué quieres transmitir.</p>
+            <ul>
+              <li>Qué productos o servicios ofreces.</li>
+              <li>A qué clientes te diriges y dónde trabajas.</li>
+              <li>Qué te diferencia y qué tono representa tu marca.</li>
+            </ul>
+            <p class="checklist-tip">
+              Puedes empezar con una explicación breve. La ordenamos contigo.
+            </p>
+          </div>
+        </div>
+      </div>
     </article>
-    <article>
-      <span>02</span>
-      <h3>Tu objetivo</h3>
-      <p>Qué quieres que una persona pueda hacer después de visitar la web.</p>
+    <article [class.is-open]="isOpen(2)">
+      <div class="checklist-overview">
+        <span class="checklist-number">02</span>
+        <div class="checklist-art checklist-art--goal" aria-hidden="true">
+          <svg viewBox="0 0 240 140" fill="none">
+            <circle class="art-guide" cx="118" cy="72" r="54" />
+            <circle class="art-pulse" cx="118" cy="72" r="38" />
+            <circle cx="118" cy="72" r="21" />
+            <circle class="art-dot" cx="118" cy="72" r="4" />
+            <g class="art-arrow"><path d="M119 71L174 16M157 16H174V33" /></g>
+            <path
+              class="art-guide"
+              d="M40 72H53M183 72H199M118 7V17M118 127V135"
+            />
+          </svg>
+        </div>
+        <h3>Tu objetivo</h3>
+        <p>
+          Qué quieres que una persona pueda hacer después de visitar la web.
+        </p>
+
+        <button
+          type="button"
+          class="checklist-toggle"
+          [attr.aria-expanded]="isOpen(2)"
+          aria-controls="checklist-panel-2"
+          [attr.aria-label]="
+            (isOpen(2) ? 'Cerrar información: ' : 'Más información: ') +
+            'Tu objetivo'
+          "
+          (click)="toggle(2)"
+        >
+          {{ isOpen(2) ? "Ver menos" : "Más información" }}
+          <span aria-hidden="true">{{ isOpen(2) ? "−" : "+" }}</span>
+        </button>
+      </div>
+      <div
+        id="checklist-panel-2"
+        class="checklist-panel"
+        [class.is-open]="isOpen(2)"
+        [attr.inert]="isOpen(2) ? null : ''"
+        [attr.aria-hidden]="!isOpen(2)"
+        (transitionend)="onPanelTransition($event)"
+      >
+        <div class="checklist-panel-inner">
+          <div class="checklist-details">
+            <p>Elegimos una acción principal para dar dirección al diseño.</p>
+            <ul>
+              <li>Recibir consultas o solicitudes de presupuesto.</li>
+              <li>Presentar tus servicios o mostrar tu trabajo.</li>
+              <li>
+                Facilitar reservas, compras o contactos, según el proyecto.
+              </li>
+            </ul>
+            <p class="checklist-tip">
+              No necesitas tenerlo decidido: podemos ayudarte a definir la
+              prioridad.
+            </p>
+          </div>
+        </div>
+      </div>
     </article>
-    <article>
-      <span>03</span>
-      <h3>Tu contenido</h3>
-      <p>Logo, fotografías, textos y materiales que ya tienes preparados.</p>
+    <article [class.is-open]="isOpen(3)">
+      <div class="checklist-overview">
+        <span class="checklist-number">03</span>
+        <div class="checklist-art checklist-art--content" aria-hidden="true">
+          <svg viewBox="0 0 240 140" fill="none">
+            <rect
+              class="art-guide"
+              x="48"
+              y="28"
+              width="91"
+              height="92"
+              rx="7"
+              transform="rotate(-12 48 28)"
+            />
+            <g class="art-float">
+              <rect
+                class="art-surface"
+                x="73"
+                y="18"
+                width="103"
+                height="106"
+                rx="7"
+              />
+              <rect x="86" y="31" width="77" height="48" rx="3" />
+              <circle cx="142" cy="44" r="5" />
+              <path
+                d="M87 73L108 52L124 67L135 57L162 78M87 94H153M87 105H132"
+              />
+            </g>
+            <circle class="art-dot" cx="195" cy="99" r="5" />
+          </svg>
+        </div>
+        <h3>Tu contenido</h3>
+        <p>Logo, fotografías, textos y materiales que ya tienes preparados.</p>
+
+        <button
+          type="button"
+          class="checklist-toggle"
+          [attr.aria-expanded]="isOpen(3)"
+          aria-controls="checklist-panel-3"
+          [attr.aria-label]="
+            (isOpen(3) ? 'Cerrar información: ' : 'Más información: ') +
+            'Tu contenido'
+          "
+          (click)="toggle(3)"
+        >
+          {{ isOpen(3) ? "Ver menos" : "Más información" }}
+          <span aria-hidden="true">{{ isOpen(3) ? "−" : "+" }}</span>
+        </button>
+      </div>
+      <div
+        id="checklist-panel-3"
+        class="checklist-panel"
+        [class.is-open]="isOpen(3)"
+        [attr.inert]="isOpen(3) ? null : ''"
+        [attr.aria-hidden]="!isOpen(3)"
+        (transitionend)="onPanelTransition($event)"
+      >
+        <div class="checklist-panel-inner">
+          <div class="checklist-details">
+            <p>Reunimos los materiales que darán personalidad a tu web.</p>
+            <ul>
+              <li>Tu logotipo y colores, si ya los tienes.</li>
+              <li>Fotografías, textos y ejemplos de tus trabajos.</li>
+              <li>Datos de contacto y enlaces a tus redes.</li>
+            </ul>
+            <p class="checklist-tip">
+              Si falta algo, identificamos contigo qué hay que preparar.
+            </p>
+          </div>
+        </div>
+      </div>
     </article>
-    <article>
-      <span>04</span>
-      <h3>Tu alcance</h3>
-      <p>
-        Las páginas, funcionalidades y mantenimiento que necesita el proyecto.
-      </p>
+    <article [class.is-open]="isOpen(4)">
+      <div class="checklist-overview">
+        <span class="checklist-number">04</span>
+        <div class="checklist-art checklist-art--scope" aria-hidden="true">
+          <svg viewBox="0 0 240 140" fill="none">
+            <path class="art-guide" d="M120 52V76M51 96V76H189V96M120 76V96" />
+            <rect
+              class="art-surface"
+              x="92"
+              y="20"
+              width="56"
+              height="32"
+              rx="5"
+            />
+            <path d="M105 36H135" />
+            <g class="art-node art-node--first">
+              <rect
+                class="art-surface"
+                x="29"
+                y="96"
+                width="44"
+                height="28"
+                rx="5"
+              />
+              <path d="M42 110H60" />
+            </g>
+            <g class="art-node art-node--second">
+              <rect
+                class="art-surface"
+                x="98"
+                y="96"
+                width="44"
+                height="28"
+                rx="5"
+              />
+              <path d="M111 110H129" />
+            </g>
+            <g class="art-node art-node--third">
+              <rect
+                class="art-surface"
+                x="167"
+                y="96"
+                width="44"
+                height="28"
+                rx="5"
+              />
+              <path d="M180 110H198" />
+            </g>
+          </svg>
+        </div>
+        <h3>Tu alcance</h3>
+        <p>
+          Las páginas, funcionalidades y mantenimiento que necesita el proyecto.
+        </p>
+
+        <button
+          type="button"
+          class="checklist-toggle"
+          [attr.aria-expanded]="isOpen(4)"
+          aria-controls="checklist-panel-4"
+          [attr.aria-label]="
+            (isOpen(4) ? 'Cerrar información: ' : 'Más información: ') +
+            'Tu alcance'
+          "
+          (click)="toggle(4)"
+        >
+          {{ isOpen(4) ? "Ver menos" : "Más información" }}
+          <span aria-hidden="true">{{ isOpen(4) ? "−" : "+" }}</span>
+        </button>
+      </div>
+      <div
+        id="checklist-panel-4"
+        class="checklist-panel"
+        [class.is-open]="isOpen(4)"
+        [attr.inert]="isOpen(4) ? null : ''"
+        [attr.aria-hidden]="!isOpen(4)"
+        (transitionend)="onPanelTransition($event)"
+      >
+        <div class="checklist-panel-inner">
+          <div class="checklist-details">
+            <p>
+              Definimos qué necesita la primera versión y qué puede llegar
+              después.
+            </p>
+            <ul>
+              <li>Las páginas y secciones que quieres incluir.</li>
+              <li>Formularios, idiomas o integraciones necesarias.</li>
+              <li>Plazos, presupuesto orientativo y mantenimiento.</li>
+            </ul>
+            <p class="checklist-tip">
+              Acordamos el alcance antes de empezar, con prioridades claras.
+            </p>
+          </div>
+        </div>
+      </div>
     </article>
   </div>
 </section>

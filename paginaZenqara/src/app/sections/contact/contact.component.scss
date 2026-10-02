@@ -59,3 +59,60 @@
     gap: 12px;
   }
 }
+.contact {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.contact h2 {
+  max-width: 75%;
+}
+.contact-art {
+  position: absolute;
+  z-index: -1;
+  right: 7%;
+  top: 20px;
+  color: #363636;
+  text-align: center;
+  pointer-events: none;
+}
+.contact-art > span {
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: clamp(160px, 25vw, 350px);
+  line-height: 1;
+  animation: contact-arrow 6s ease-in-out infinite;
+}
+.contact-art small {
+  display: block;
+  color: #777;
+  font-size: 9px;
+  letter-spacing: 2px;
+  line-height: 1.8;
+}
+.contact-bottom {
+  position: relative;
+}
+@keyframes contact-arrow {
+  50% {
+    transform: translate(7px, -7px);
+  }
+}
+@media (max-width: 800px) {
+  .contact h2 {
+    max-width: 100%;
+  }
+  .contact-art {
+    right: -15px;
+    top: 40px;
+    opacity: 0.4;
+  }
+  .contact-art small {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-art > span {
+    animation: none;
+  }
+}

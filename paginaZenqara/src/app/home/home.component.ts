@@ -50,6 +50,10 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   private readonly zone = inject(NgZone);
   private animations?: HomeAnimations;
 
+  setStoryPaused(paused: boolean): void {
+    this.zone.runOutsideAngular(() => this.animations?.setStoryPaused(paused));
+  }
+
   refreshScroll(): void {
     this.zone.runOutsideAngular(() => this.animations?.refresh());
   }

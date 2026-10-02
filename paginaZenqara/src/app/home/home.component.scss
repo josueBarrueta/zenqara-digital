@@ -1,23 +1,7 @@
-main section:not(.hero):not(.scroll-story) {
-  position: relative;
-  --section-progress: 1;
-}
-main section:not(.hero):not(.scroll-story)::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 6%;
-  right: 6%;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.2;
-  transform: scaleX(var(--section-progress));
-  transform-origin: left;
-  pointer-events: none;
-}
 @media (min-width: 1600px) {
   main {
     max-width: 1600px;
     margin: auto;
   }
 }
+

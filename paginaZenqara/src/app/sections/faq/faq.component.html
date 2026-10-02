@@ -1,43 +1,95 @@
 <section class="faq extra-section">
-  <p class="eyebrow">PREGUNTAS FRECUENTES</p>
-  <h2>Antes de dar el paso.</h2>
-  <details>
-    <summary>¿Puedo empezar con una página sencilla?</summary>
-    <p>
-      Sí. Podemos definir una primera web centrada en tus servicios y contacto,
-      y valorar ampliaciones cuando tu negocio las necesite.
+  <div class="faq-intro">
+    <p class="eyebrow">PREGUNTAS FRECUENTES</p>
+    <h2>Antes de<br />dar el paso.</h2>
+    <p class="faq-lead">
+      Resolvemos las primeras dudas para que empieces con las ideas claras.
     </p>
-  </details>
-  <details>
-    <summary>¿Qué necesito aportar?</summary>
-    <p>
-      La información de tu empresa, los servicios y tus datos de contacto. Si
-      tienes logo, imágenes o textos, los utilizaremos como punto de partida.
-    </p>
-  </details>
-  <details>
-    <summary>¿El mantenimiento está incluido?</summary>
-    <p>
-      El alcance del mantenimiento y sus condiciones se acuerdan contigo. El
-      servicio de servidores está orientado a las páginas que creamos para
-      nuestros clientes.
-    </p>
-  </details>
-  <details>
-    <summary>¿Puedo solicitar cambios después del lanzamiento?</summary>
-    <p>
-      Sí. Revisamos lo que necesitas y acordamos el alcance de las
-      modificaciones o nuevas funcionalidades.
-    </p>
-  </details>
-  <details>
-    <summary>¿Cómo empezamos?</summary>
-    <p>
-      Escríbenos a
-      <a href="mailto:zenqara.digital&#64;gmail.com"
-        >zenqara.digital&#64;gmail.com</a
-      >
-      y cuéntanos brevemente tu proyecto.
-    </p>
-  </details>
+    <div class="faq-contact">
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M8 10H40V31H25L15 39V31H8Z" />
+        <path d="M16 19H32M16 24H27" />
+      </svg>
+      <p>¿Tu pregunta es otra?<span>Cuéntanos qué tienes en mente.</span></p>
+      <a href="#contacto">Hablemos <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <div class="faq-list">
+    <details
+      (toggle)="layoutChange.emit()"
+      (transitionend)="onTransition($event)"
+    >
+      <summary>
+        <span class="faq-number" aria-hidden="true">01</span
+        ><span class="faq-question"
+          >¿Puedo empezar con una página sencilla?</span
+        ><span class="faq-plus" aria-hidden="true"></span>
+      </summary>
+      <p>
+        Sí. Podemos definir una primera web centrada en tus servicios y
+        contacto, y valorar ampliaciones cuando tu negocio las necesite.
+      </p>
+    </details>
+    <details
+      (toggle)="layoutChange.emit()"
+      (transitionend)="onTransition($event)"
+    >
+      <summary>
+        <span class="faq-number" aria-hidden="true">02</span
+        ><span class="faq-question">¿Qué necesito aportar?</span
+        ><span class="faq-plus" aria-hidden="true"></span>
+      </summary>
+      <p>
+        La información de tu empresa, los servicios y tus datos de contacto. Si
+        tienes logo, imágenes o textos, los utilizaremos como punto de partida.
+      </p>
+    </details>
+    <details
+      (toggle)="layoutChange.emit()"
+      (transitionend)="onTransition($event)"
+    >
+      <summary>
+        <span class="faq-number" aria-hidden="true">03</span
+        ><span class="faq-question">¿El mantenimiento está incluido?</span
+        ><span class="faq-plus" aria-hidden="true"></span>
+      </summary>
+      <p>
+        El alcance del mantenimiento y sus condiciones se acuerdan contigo. El
+        servicio de servidores está orientado a las páginas que creamos para
+        nuestros clientes.
+      </p>
+    </details>
+    <details
+      (toggle)="layoutChange.emit()"
+      (transitionend)="onTransition($event)"
+    >
+      <summary>
+        <span class="faq-number" aria-hidden="true">04</span
+        ><span class="faq-question"
+          >¿Puedo solicitar cambios después del lanzamiento?</span
+        ><span class="faq-plus" aria-hidden="true"></span>
+      </summary>
+      <p>
+        Sí. Revisamos lo que necesitas y acordamos el alcance de las
+        modificaciones o nuevas funcionalidades.
+      </p>
+    </details>
+    <details
+      (toggle)="layoutChange.emit()"
+      (transitionend)="onTransition($event)"
+    >
+      <summary>
+        <span class="faq-number" aria-hidden="true">05</span
+        ><span class="faq-question">¿Cómo empezamos?</span
+        ><span class="faq-plus" aria-hidden="true"></span>
+      </summary>
+      <p>
+        Escríbenos a
+        <a href="mailto:zenqara.digital&#64;gmail.com"
+          >zenqara.digital&#64;gmail.com</a
+        >
+        y cuéntanos brevemente tu proyecto.
+      </p>
+    </details>
+  </div>
 </section>

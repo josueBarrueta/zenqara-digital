@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export interface HomeAnimations {
   refresh(): void;
   destroy(): void;
+  setStoryPaused(paused: boolean): void;
 }
 
 export function createHomeAnimations(
@@ -32,6 +33,13 @@ export function createHomeAnimations(
   ];
   const dots = root.querySelectorAll(".story-progress span");
   const media = gsap.matchMedia();
+  let storyTimeline: gsap.core.Timeline | undefined;
+  let userPaused = false;
+  let storyVisible = false;
+  const syncPlayback = (): void => {
+    if (!storyVisible || userPaused || document.hidden) storyTimeline?.pause();
+    else storyTimeline?.play();
+  };
   media.add(
     {
       desktop: "(min-width: 701px)",
@@ -45,8 +53,8 @@ export function createHomeAnimations(
         ".service-list article, .steps article, .contact h2, .device-layout article, .maintenance-items article, .checklist-grid article";
       const cards = root.querySelectorAll(cardSelector);
       if (reduced) {
-        gsap.set(demo, { "--build": 1, "--narrow": 0 });
-        gsap.set(story, { "--server": 1 });
+        gsap.set(demo, { width: "100%", rotateY: 0, y: 0 });
+        gsap.set(root.querySelector(".server-diagram"), { opacity: 1, y: 0 });
         gsap.set(cards, { opacity: 1, y: 0 });
         title.innerHTML = "Tu web.<br>De principio a fin.";
         description.textContent =
@@ -73,34 +81,13 @@ export function createHomeAnimations(
         });
       };
 
-      // La línea acompaña el recorrido sin cambiar la distribución.
-      root
-        .querySelectorAll<HTMLElement>(
-          "main section:not(.hero):not(.scroll-story)",
-        )
-        .forEach((section) => {
-          gsap.fromTo(
-            section,
-            { "--section-progress": 0 },
-            {
-              "--section-progress": 1,
-              ease: "none",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 85%",
-                end: "bottom 65%",
-                scrub: 0.6,
-              },
-            },
-          );
-        });
       reveal(
         ".responsive-section > .eyebrow, .project-checklist > .eyebrow, .stack-card > h3, .stack-card > p, .card-keywords, .hero-bottom",
         { y: mobile ? 12 : 24, duration: 0.75 },
       );
       root
         .querySelectorAll(
-          ".steps article > span, .maintenance-items article > span, .checklist-grid article > span, .device-symbol",
+          ".steps article > span, .maintenance-items article > span, .checklist-grid article > span",
         )
         .forEach((number) => {
           gsap.fromTo(
@@ -131,33 +118,56 @@ export function createHomeAnimations(
         dots.forEach((dot, index) =>
           dot.classList.toggle("active", index === next),
         );
-        gsap.fromTo(
-          [title, description],
-          { opacity: 0.35, y: 12 },
-          { opacity: 1, y: 0, duration: 0.35, overwrite: true },
-        );
       };
 
-      gsap.set(demo, { "--build": 0, "--narrow": 0 });
-      gsap.set(story, { "--server": 0 });
+      const server = root.querySelector(".server-diagram");
       const timeline = gsap.timeline({
-        defaults: { ease: "none" },
-        scrollTrigger: {
-          trigger: story,
-          start: "top top+=77",
-          end: () =>
-            `+=${Math.max(1, story.offsetHeight - window.innerHeight)}`,
-          scrub: mobile ? 0.25 : 0.65,
-          invalidateOnRefresh: true,
-        },
+        paused: true,
+        repeat: -1,
+        repeatDelay: 0.3,
+        defaults: { ease: "power2.inOut" },
         onUpdate: () => updateStage(timeline.progress()),
       });
+      storyTimeline = timeline;
       timeline
-        .to(demo, { "--build": 1, duration: 0.3 }, 0)
-        .to(demo, { "--narrow": 1, duration: 0.22 }, 0.36)
-        .to(story, { "--server": 1, duration: 0.2 }, 0.7)
-        .to({}, { duration: 0.1 }, 0.9);
+        .fromTo(
+          root.querySelector(".story-visual"),
+          { opacity: 0 },
+          { opacity: 1, duration: 0.4 },
+          0,
+        )
+        .fromTo(demo, { rotateY: -5 }, { rotateY: 0, duration: 1.3 }, 0)
+        .fromTo(
+          demo,
+          { width: "100%" },
+          { width: mobile ? "72%" : "52%", duration: 1.8 },
+          4,
+        )
+        .fromTo(
+          server,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 1.3 },
+          8,
+        )
+        .fromTo(demo, { y: 0 }, { y: -12, duration: 1.3 }, 8)
+        .to(
+          root.querySelector(".story-visual"),
+          { opacity: 0, duration: 0.4 },
+          11.6,
+        );
       updateStage(0);
+      const playbackTrigger = ScrollTrigger.create({
+        trigger: story,
+        start: "top 85%",
+        end: "bottom 15%",
+        onToggle: (trigger) => {
+          storyVisible = trigger.isActive;
+          syncPlayback();
+        },
+      });
+      storyVisible = playbackTrigger.isActive;
+      syncPlayback();
+      document.addEventListener("visibilitychange", syncPlayback);
 
       gsap.fromTo(
         root.querySelector(".identity"),
@@ -175,7 +185,7 @@ export function createHomeAnimations(
         },
       );
       reveal(
-        ".section-heading, .maintenance-intro, .project-checklist > h2, .faq > h2, .faq > .eyebrow, .manifesto > p, .responsive-note, .contact > .eyebrow, .contact-bottom",
+        ".section-heading, .maintenance-intro, .project-checklist > h2, .faq-intro, .manifesto > p, .responsive-note, .contact > .eyebrow, .contact-bottom",
         { y: mobile ? 16 : 28, duration: 0.8 },
         "top 90%",
       );
@@ -211,61 +221,6 @@ export function createHomeAnimations(
           },
         },
       );
-      const adaptive = root.querySelector<HTMLElement>(".adaptive-visual");
-      if (adaptive) {
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: adaptive,
-              start: "top 85%",
-              end: "bottom 25%",
-              scrub: 0.6,
-              invalidateOnRefresh: true,
-            },
-          })
-          .fromTo(
-            adaptive,
-            {
-              "--screen-width": 100,
-              "--screen-height": 230,
-              "--screen-radius": 8,
-              "--tile-columns": 3,
-            },
-            {
-              "--screen-width": 65,
-              "--screen-height": 270,
-              "--screen-radius": 18,
-              "--tile-columns": 2,
-              duration: 1,
-              ease: "none",
-            },
-          )
-          .to(adaptive, {
-            "--screen-width": 36,
-            "--screen-height": 310,
-            "--screen-radius": 28,
-            "--tile-columns": 1,
-            duration: 1,
-            ease: "none",
-          });
-        root
-          .querySelectorAll(".adaptive-labels span")
-          .forEach((label, index) => {
-            gsap.fromTo(
-              label,
-              { opacity: index === 0 ? 1 : 0.35 },
-              {
-                opacity: 1,
-                scrollTrigger: {
-                  trigger: adaptive,
-                  start: "top " + (85 - index * 20) + "%",
-                  end: "bottom 25%",
-                  scrub: true,
-                },
-              },
-            );
-          });
-      }
       reveal(
         cardSelector,
         { y: mobile ? 18 : 35, duration: 0.7, ease: "power2.out" },
@@ -317,7 +272,11 @@ export function createHomeAnimations(
           },
         },
       );
-      return () => gsap.killTweensOf([title, description]);
+      return () => {
+        document.removeEventListener("visibilitychange", syncPlayback);
+        storyTimeline = undefined;
+        gsap.killTweensOf([title, description]);
+      };
     },
     root,
   );
@@ -334,6 +293,10 @@ export function createHomeAnimations(
 
   return {
     refresh,
+    setStoryPaused(paused: boolean): void {
+      userPaused = paused;
+      syncPlayback();
+    },
     destroy(): void {
       active = false;
       if (pendingRefresh !== undefined) cancelAnimationFrame(pendingRefresh);
@@ -341,3 +304,4 @@ export function createHomeAnimations(
     },
   };
 }
+
