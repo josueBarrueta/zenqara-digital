@@ -18,6 +18,20 @@ npm run build
 
 La web compilada se guarda en `dist/`, fuera de `paginaZenqara/`.
 
+## Publicación
+
+La web está publicada en https://josuebarrueta.github.io/zenqara-digital-web/.
+El repositorio público `josueBarrueta/zenqara-digital-web` contiene solo los archivos compilados; este repositorio conserva el código fuente privado.
+
+Para preparar una actualización, desde `paginaZenqara/`:
+
+```sh
+npm run check
+npm run build -- --base-href /zenqara-digital-web/
+```
+
+Después se actualizan los archivos del repositorio público con el contenido de `dist/`, conservando `.nojekyll`. GitHub Pages publica desde la raíz de su rama `main`. Los cambios en este repositorio de código fuente no se publican automáticamente.
+
 ## Comprobaciones
 
 ```sh
@@ -39,8 +53,7 @@ npm audit
 - `process`: revisiones, aprobación de cambios y entrega.
 - `web-types`: opciones de apariencia, estructura y funciones.
 - `maintenance`: mantenimiento.
-- `faq`: preguntas frecuentes.
-- `contact`: contacto.
+- `faq`: preguntas frecuentes y contacto, unidos en una sección.
 - `site-footer`: pie de página.
 
 Los estilos propios y sus ajustes de móvil están en el SCSS de cada apartado. `src/styles.scss` los reúne; `src/styles/_shared.scss` contiene los elementos compartidos y `_mail.scss` la animación del sobre. Las fuentes se cargan desde `src/index.html`.

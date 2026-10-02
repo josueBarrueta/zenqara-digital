@@ -167,8 +167,6 @@ h3 {
 }
 // Stop decorative loops when their section or browser tab is out of view.
 .hero[data-animated="false"] .hero-orbit span,
-.service-list article[data-animated="false"] .service-sketch svg *,
-.maintenance-section[data-animated="false"] .maintenance-visual svg *,
-.contact[data-animated="false"] .contact-art > span {
+.service-list article[data-animated="false"] .service-sketch svg * {
   animation-play-state: paused;
 }

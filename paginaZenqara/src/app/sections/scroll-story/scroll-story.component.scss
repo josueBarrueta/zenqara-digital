@@ -1095,8 +1095,27 @@
   }
   .build-workspace {
     inset: 35px 0 22px;
-    gap: 12px;
+    gap: 32px 20px;
     grid-template-columns: 1.8fr 1fr;
+    align-content: center;
+  }
+  .build-browser {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .build-database {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .build-database .database-icon {
+    margin: 0 auto;
+  }
+  .build-database.is-connected {
+    transform: none;
   }
   .build-page {
     padding: 10px;
@@ -1155,9 +1174,20 @@
     padding: 7px 2px;
   }
   .build-link {
-    font-size: 6px;
+    position: static;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 8px;
+    line-height: 1.5;
     letter-spacing: 0.3px;
-    bottom: -12px;
+  }
+  .build-link > span {
+    font-size: 17px;
+    margin-right: 0;
   }
   .mini-browser-bar {
     padding: 6px;

@@ -6,7 +6,6 @@ import { ProcessComponent } from "../sections/process/process.component";
 import { WebTypesComponent } from "../sections/web-types/web-types.component";
 import { MaintenanceComponent } from "../sections/maintenance/maintenance.component";
 import { FaqComponent } from "../sections/faq/faq.component";
-import { ContactComponent } from "../sections/contact/contact.component";
 import { SiteFooterComponent } from "../sections/site-footer/site-footer.component";
 import {
   AfterViewInit,
@@ -33,7 +32,6 @@ import { createHomeAnimations, type HomeAnimations } from "./home.animations";
     WebTypesComponent,
     MaintenanceComponent,
     FaqComponent,
-    ContactComponent,
     SiteFooterComponent,
   ],
   templateUrl: "./home.component.html",

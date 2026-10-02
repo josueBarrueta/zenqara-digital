@@ -19,7 +19,7 @@ export function createHomeAnimations(root: HTMLElement): HomeAnimations {
       const reduced = context.conditions?.["reduced"];
       const mobile = context.conditions?.["mobile"];
       const cardSelector =
-        ".service-list article, .steps article, .contact h2, .maintenance-items article";
+        ".service-list article, .steps article, .maintenance-items article";
       const cards = root.querySelectorAll(cardSelector);
       if (reduced) {
         gsap.set(cards, { opacity: 1, y: 0 });
@@ -87,7 +87,7 @@ export function createHomeAnimations(root: HTMLElement): HomeAnimations {
         },
       );
       reveal(
-        ".section-heading, .maintenance-intro, .faq-intro, .contact > .eyebrow, .contact-bottom",
+        ".section-heading, .maintenance-intro, .faq-intro",
         { y: mobile ? 16 : 28, duration: 0.8 },
         "top 90%",
       );
@@ -130,7 +130,7 @@ export function createHomeAnimations(root: HTMLElement): HomeAnimations {
   );
   let active = true;
   const movingSections = root.querySelectorAll<HTMLElement>(
-    ".hero, .service-list article, .maintenance-section, .contact",
+    ".hero, .service-list article, .maintenance-section",
   );
   const visibleSections = new Set<HTMLElement>();
   const updateMotion = (): void => {
