@@ -1,5 +1,5 @@
 header {
-  padding: 30px 5%;
+  padding: 18px 5%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,8 +9,6 @@ header {
   z-index: 20;
   background: rgba(8, 8, 8, 0.88);
   backdrop-filter: blur(18px);
-  padding-top: 18px;
-  padding-bottom: 18px;
 }
 .nav-contact {
   border: 1px solid #555;
@@ -25,12 +23,6 @@ header {
   transform: translateY(-3px);
   background: #fff;
   color: #111;
-}
-@media (min-width: 1600px) {
-  header {
-    max-width: 1600px;
-    margin: auto;
-  }
 }
 @media (max-width: 800px) {
   header {

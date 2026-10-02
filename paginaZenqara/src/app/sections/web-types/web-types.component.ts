@@ -1,8 +1,8 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 @Component({
   selector: "app-web-types",
   standalone: true,
-  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: "display: contents" },
   templateUrl: "./web-types.component.html",
 })

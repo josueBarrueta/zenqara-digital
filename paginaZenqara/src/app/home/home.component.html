@@ -1,15 +1,12 @@
 <app-site-header />
 <main>
   <app-hero />
-  <app-scroll-story (playbackChange)="setStoryPaused($event)" />
+  <app-scroll-story />
   <app-services (layoutChange)="refreshScroll()" />
   <app-process />
 
-  <app-manifesto />
   <app-web-types />
-  <app-responsive />
   <app-maintenance />
-  <app-project-checklist (layoutChange)="refreshScroll()" />
   <app-faq (layoutChange)="refreshScroll()" />
 
   <app-contact />

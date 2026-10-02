@@ -1,8 +1,8 @@
-import { Component, ViewEncapsulation, output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, output } from "@angular/core";
 @Component({
   selector: "app-services",
   standalone: true,
-  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: "display: contents" },
   templateUrl: "./services.component.html",
 })
@@ -15,16 +15,13 @@ export class ServicesComponent {
   toggleService(service: number): void {
     if (this.openServices.has(service)) this.openServices.delete(service);
     else this.openServices.add(service);
-    this.refreshScroll();
+    this.layoutChange.emit();
   }
   onPanelTransition(event: TransitionEvent): void {
     if (
       event.target === event.currentTarget &&
       event.propertyName === "grid-template-rows"
     )
-      this.refreshScroll();
-  }
-  refreshScroll(): void {
-    this.layoutChange.emit();
+      this.layoutChange.emit();
   }
 }

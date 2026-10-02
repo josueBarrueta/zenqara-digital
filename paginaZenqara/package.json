@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "check": "npm run typecheck && npm run format:check"
   },
   "prettier": {
     "overrides": [
@@ -21,23 +23,25 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^20.0.5",
-    "@angular/common": "^20.0.0",
-    "@angular/compiler": "^20.0.0",
-    "@angular/core": "^20.0.0",
-    "@angular/forms": "^20.0.0",
-    "@angular/platform-browser": "^20.0.0",
-    "@angular/router": "^20.0.0",
+    "@angular/common": "^20.3.33",
+    "@angular/compiler": "^20.3.33",
+    "@angular/core": "^20.3.33",
+    "@angular/platform-browser": "^20.3.33",
     "gsap": "^3.15.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular/build": "^20.0.4",
-    "@angular/cli": "^20.0.4",
-    "@angular/compiler-cli": "^20.0.0",
+    "@angular/build": "^20.3.37",
+    "@angular/cli": "^20.3.37",
+    "@angular/compiler-cli": "^20.3.33",
     "prettier": "^3.9.9",
-    "typescript": "~5.8.2"
+    "typescript": "~5.9.3"
+  },
+  "overrides": {
+    "@angular/build": {
+      "piscina": "5.3.2"
+    }
   }
 }

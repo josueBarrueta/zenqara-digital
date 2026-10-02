@@ -4,42 +4,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 export interface HomeAnimations {
   refresh(): void;
   destroy(): void;
-  setStoryPaused(paused: boolean): void;
 }
 
-export function createHomeAnimations(
-  root: HTMLElement,
-): HomeAnimations | undefined {
+export function createHomeAnimations(root: HTMLElement): HomeAnimations {
   gsap.registerPlugin(ScrollTrigger);
-  const story = root.querySelector<HTMLElement>(".scroll-story");
-  const demo = root.querySelector<HTMLElement>(".web-demo");
-  const title = root.querySelector<HTMLElement>("#story-title");
-  const description = root.querySelector<HTMLElement>("#story-description");
-  if (!story || !demo || !title || !description) return undefined;
-
-  const stages = [
-    [
-      "Todo empieza<br>con una idea.",
-      "Damos estructura a lo que quieres contar.",
-    ],
-    [
-      "Una web que se adapta.<br>A ti. Y a tu cliente.",
-      "Desarrollamos una experiencia para móvil, tablet y ordenador.",
-    ],
-    [
-      "Y seguimos<br>cuidando de ella.",
-      "Mantenemos el servidor de la web que hemos creado para ti.",
-    ],
-  ];
-  const dots = root.querySelectorAll(".story-progress span");
   const media = gsap.matchMedia();
-  let storyTimeline: gsap.core.Timeline | undefined;
-  let userPaused = false;
-  let storyVisible = false;
-  const syncPlayback = (): void => {
-    if (!storyVisible || userPaused || document.hidden) storyTimeline?.pause();
-    else storyTimeline?.play();
-  };
   media.add(
     {
       desktop: "(min-width: 701px)",
@@ -50,15 +19,10 @@ export function createHomeAnimations(
       const reduced = context.conditions?.["reduced"];
       const mobile = context.conditions?.["mobile"];
       const cardSelector =
-        ".service-list article, .steps article, .contact h2, .device-layout article, .maintenance-items article, .checklist-grid article";
+        ".service-list article, .steps article, .contact h2, .maintenance-items article";
       const cards = root.querySelectorAll(cardSelector);
       if (reduced) {
-        gsap.set(demo, { width: "100%", rotateY: 0, y: 0 });
-        gsap.set(root.querySelector(".server-diagram"), { opacity: 1, y: 0 });
         gsap.set(cards, { opacity: 1, y: 0 });
-        title.innerHTML = "Tu web.<br>De principio a fin.";
-        description.textContent =
-          "Diseño adaptable, desarrollo y mantenimiento de su servidor.";
         return;
       }
 
@@ -82,12 +46,12 @@ export function createHomeAnimations(
       };
 
       reveal(
-        ".responsive-section > .eyebrow, .project-checklist > .eyebrow, .stack-card > h3, .stack-card > p, .card-keywords, .hero-bottom",
+        ".stack-card > h3, .stack-card > p, .card-keywords, .hero-bottom",
         { y: mobile ? 12 : 24, duration: 0.75 },
       );
       root
         .querySelectorAll(
-          ".steps article > span, .maintenance-items article > span, .checklist-grid article > span",
+          ".steps article > span, .maintenance-items article > span",
         )
         .forEach((number) => {
           gsap.fromTo(
@@ -107,68 +71,6 @@ export function createHomeAnimations(
           );
         });
 
-      let phase = -1;
-      const updateStage = (progress: number): void => {
-        const next = Math.min(2, Math.floor(progress * 3));
-        if (next === phase) return;
-        phase = next;
-        story.dataset["phase"] = String(next);
-        title.innerHTML = stages[next][0];
-        description.textContent = stages[next][1];
-        dots.forEach((dot, index) =>
-          dot.classList.toggle("active", index === next),
-        );
-      };
-
-      const server = root.querySelector(".server-diagram");
-      const timeline = gsap.timeline({
-        paused: true,
-        repeat: -1,
-        repeatDelay: 0.3,
-        defaults: { ease: "power2.inOut" },
-        onUpdate: () => updateStage(timeline.progress()),
-      });
-      storyTimeline = timeline;
-      timeline
-        .fromTo(
-          root.querySelector(".story-visual"),
-          { opacity: 0 },
-          { opacity: 1, duration: 0.4 },
-          0,
-        )
-        .fromTo(demo, { rotateY: -5 }, { rotateY: 0, duration: 1.3 }, 0)
-        .fromTo(
-          demo,
-          { width: "100%" },
-          { width: mobile ? "72%" : "52%", duration: 1.8 },
-          4,
-        )
-        .fromTo(
-          server,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 1.3 },
-          8,
-        )
-        .fromTo(demo, { y: 0 }, { y: -12, duration: 1.3 }, 8)
-        .to(
-          root.querySelector(".story-visual"),
-          { opacity: 0, duration: 0.4 },
-          11.6,
-        );
-      updateStage(0);
-      const playbackTrigger = ScrollTrigger.create({
-        trigger: story,
-        start: "top 85%",
-        end: "bottom 15%",
-        onToggle: (trigger) => {
-          storyVisible = trigger.isActive;
-          syncPlayback();
-        },
-      });
-      storyVisible = playbackTrigger.isActive;
-      syncPlayback();
-      document.addEventListener("visibilitychange", syncPlayback);
-
       gsap.fromTo(
         root.querySelector(".identity"),
         { y: 0, scale: 1 },
@@ -185,7 +87,7 @@ export function createHomeAnimations(
         },
       );
       reveal(
-        ".section-heading, .maintenance-intro, .project-checklist > h2, .faq-intro, .manifesto > p, .responsive-note, .contact > .eyebrow, .contact-bottom",
+        ".section-heading, .maintenance-intro, .faq-intro, .contact > .eyebrow, .contact-bottom",
         { y: mobile ? 16 : 28, duration: 0.8 },
         "top 90%",
       );
@@ -203,47 +105,12 @@ export function createHomeAnimations(
           },
         });
       });
-      gsap.fromTo(
-        root.querySelector(".responsive-section"),
-        {
-          clipPath: mobile
-            ? "inset(0 8% 0 8% round 24px)"
-            : "inset(0 18% 0 18% round 40px)",
-        },
-        {
-          clipPath: "inset(0 0% 0 0% round 0px)",
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".responsive-section",
-            start: "top 100%",
-            end: "top 20%",
-            scrub: 0.5,
-          },
-        },
-      );
       reveal(
         cardSelector,
         { y: mobile ? 18 : 35, duration: 0.7, ease: "power2.out" },
         "top 88%",
       );
 
-      root.querySelectorAll(".word-reveal span").forEach((word) =>
-        gsap.fromTo(
-          word,
-          { opacity: 0.15, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            ease: "none",
-            scrollTrigger: {
-              trigger: word,
-              start: "top 85%",
-              end: "top 45%",
-              scrub: 0.5,
-            },
-          },
-        ),
-      );
       root.querySelectorAll(".stack-card").forEach((card, index) => {
         if (index < 2)
           gsap.to(card, {
@@ -258,29 +125,31 @@ export function createHomeAnimations(
             },
           });
       });
-      gsap.fromTo(
-        root.querySelector(".responsive-section h2"),
-        { y: 30 },
-        {
-          y: -15,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".responsive-section",
-            start: "top 80%",
-            end: "bottom top",
-            scrub: 0.6,
-          },
-        },
-      );
-      return () => {
-        document.removeEventListener("visibilitychange", syncPlayback);
-        storyTimeline = undefined;
-        gsap.killTweensOf([title, description]);
-      };
     },
     root,
   );
   let active = true;
+  const movingSections = root.querySelectorAll<HTMLElement>(
+    ".hero, .service-list article, .maintenance-section, .contact",
+  );
+  const visibleSections = new Set<HTMLElement>();
+  const updateMotion = (): void => {
+    movingSections.forEach((element) => {
+      const animated = String(visibleSections.has(element) && !document.hidden);
+      if (element.dataset["animated"] !== animated)
+        element.dataset["animated"] = animated;
+    });
+  };
+  const motionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const element = entry.target as HTMLElement;
+      if (entry.isIntersecting) visibleSections.add(element);
+      else visibleSections.delete(element);
+    });
+    updateMotion();
+  });
+  movingSections.forEach((element) => motionObserver.observe(element));
+  document.addEventListener("visibilitychange", updateMotion);
   let pendingRefresh: number | undefined;
   const refresh = (): void => {
     if (!active || pendingRefresh !== undefined) return;
@@ -293,15 +162,14 @@ export function createHomeAnimations(
 
   return {
     refresh,
-    setStoryPaused(paused: boolean): void {
-      userPaused = paused;
-      syncPlayback();
-    },
+
     destroy(): void {
       active = false;
+      motionObserver.disconnect();
+      document.removeEventListener("visibilitychange", updateMotion);
+      movingSections.forEach((element) => delete element.dataset["animated"]);
       if (pendingRefresh !== undefined) cancelAnimationFrame(pendingRefresh);
       media.revert();
     },
   };
 }
-

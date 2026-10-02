@@ -96,6 +96,10 @@
 .service-title {
   font-size: clamp(22px, 2.5vw, 36px);
   font-weight: 300;
+  min-width: 0;
+  overflow-wrap: normal;
+  line-height: 1.25;
+  transition: color 0.25s;
 }
 .service-list article:hover .service-sketch svg {
   stroke: #eee;
@@ -124,11 +128,6 @@
 }
 .service-trigger .service-tag {
   padding-top: 0;
-}
-.service-title {
-  min-width: 0;
-  overflow-wrap: anywhere;
-  transition: color 0.25s;
 }
 .service-trigger:hover .service-title {
   color: #bbb;
@@ -203,24 +202,36 @@
   .service-list ul {
     display: grid;
   }
+  .service-content {
+    padding-left: 176px;
+  }
 }
 @media (max-width: 700px) {
   .service-trigger {
-    grid-template-columns: 25px 65px minmax(0, 1fr) 20px;
+    grid-template-columns: 25px minmax(0, 1fr) 20px;
+    grid-template-areas:
+      "number sketch icon"
+      ". title icon";
     gap: 12px;
     padding: 25px 0;
   }
   .service-sketch {
+    grid-area: sketch;
     width: 65px;
   }
   .service-sketch svg {
     height: 75px;
   }
   .services .number {
+    grid-area: number;
     font-size: 18px;
   }
   .service-title {
+    grid-area: title;
     font-size: 22px;
+  }
+  .service-icon {
+    grid-area: icon;
   }
   .service-content {
     padding: 0 0 24px 0;
@@ -237,4 +248,3 @@
     transition: none;
   }
 }
-

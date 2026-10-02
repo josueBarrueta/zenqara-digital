@@ -1,10 +1,10 @@
 import { MailLinkComponent } from "../../shared/mail-link/mail-link.component";
-import { Component, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 @Component({
   selector: "app-contact",
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MailLinkComponent],
-  encapsulation: ViewEncapsulation.None,
   host: { style: "display: contents" },
   templateUrl: "./contact.component.html",
 })

@@ -1,62 +1,362 @@
 <section
   id="tu-web"
-  class="scroll-story"
-  aria-label="De la idea a una web en funcionamiento"
+  class="journey"
+  [attr.data-playing]="playing"
+  [attr.data-scene]="active"
 >
-  <div class="story-sticky">
-    <div class="story-copy">
-      <p class="eyebrow">TU WEB, PASO A PASO</p>
-      <h2 id="story-title">Todo empieza<br />con una idea.</h2>
-      <p id="story-description">Damos estructura a lo que quieres contar.</p>
-      <div class="story-progress" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-    <div class="story-visual">
-      <div
-        class="web-demo"
-        aria-label="Demostración de un diseño web adaptable"
+  <div class="journey-intro">
+    <p class="eyebrow">DE TU IDEA A UNA WEB QUE EVOLUCIONA</p>
+    <h2>Te escuchamos. La construimos.<br /><em>Seguimos contigo.</em></h2>
+    <p>
+      Un proyecto compartido, desde la primera conversación hasta las próximas
+      ideas de tu negocio.
+    </p>
+  </div>
+  <nav class="journey-tabs" aria-label="Las etapas de tu proyecto">
+    @for (scene of scenes; track scene.label; let index = $index) {
+      <button
+        type="button"
+        (click)="select(index)"
+        [attr.aria-pressed]="active === index"
       >
-        <div class="demo-bar">
-          <span>● ● ●</span><span>tu próxima web</span>
-        </div>
-        <div class="demo-content">
-          <div class="demo-nav">
-            TU MARCA <span>Inicio · Servicios · Contacto</span>
-          </div>
-          <div class="demo-head">
-            <span>HECHO PARA TU NEGOCIO</span>
-            <h3>Una idea.<br />Muchas posibilidades.</h3>
-            <div class="demo-button">Conoce lo que hacemos</div>
-          </div>
-          <div class="demo-grid">
-            <div>Diseño</div>
-            <div>Desarrollo</div>
-            <div>Continuidad</div>
-          </div>
-        </div>
+        <span>{{ scene.label }}</span
+        ><small>{{
+          index === 0
+            ? "Tu visión"
+            : index === 1
+              ? "Tu web"
+              : "Tu siguiente paso"
+        }}</small
+        ><i #sceneProgress></i>
+      </button>
+    }
+  </nav>
+  <div class="journey-layout">
+    <div #showcase class="journey-stage" [attr.data-beat]="beat">
+      <div class="scene-top">
+        <span><i></i> {{ current.label }}</span
+        ><small>{{ current.beats[beat] }}</small>
       </div>
-      <div class="server-diagram" aria-hidden="true">
-        <div class="connector"></div>
-        <div class="server-box">
-          <span>WEB + SERVIDOR</span><strong>Un proyecto conectado.</strong>
-          <p>Mantenimiento · Actualizaciones · Soporte</p>
+      <div class="scene-stack">
+        <div
+          class="scene-shell"
+          [class.is-active]="active === 0"
+          [attr.aria-hidden]="active !== 0"
+        >
+          <div class="discovery-scene">
+            <svg
+              class="discovery-flow"
+              viewBox="0 0 640 350"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M90 135Q220 40 315 155M90 155Q220 270 315 180M550 135Q430 40 330 155M550 155Q430 270 330 180"
+              />
+              <path
+                class="flow-packets"
+                d="M90 135Q220 40 315 155M90 155Q220 270 315 180M550 135Q430 40 330 155M550 155Q430 270 330 180"
+              />
+            </svg>
+            <div class="discovery-person client-person">
+              <div class="person-avatar">
+                <ng-container [ngTemplateOutlet]="person" />
+              </div>
+              <strong>Tú</strong><span>Tu negocio. Tu visión.</span>
+            </div>
+            <div class="discovery-person studio-person">
+              <div class="person-avatar">
+                <ng-container [ngTemplateOutlet]="person" />
+              </div>
+              <strong>Zenqara</strong><span>Escuchamos y damos forma.</span>
+            </div>
+            <div
+              class="idea-chip idea-chip--one"
+              [class.is-gathered]="beat >= 1"
+            >
+              ✦ Tu idea
+            </div>
+            <div
+              class="idea-chip idea-chip--two"
+              [class.is-gathered]="beat >= 1"
+            >
+              ◎ Tus clientes
+            </div>
+            <div
+              class="idea-chip idea-chip--three"
+              [class.is-gathered]="beat >= 2"
+            >
+              ◈ Referencias
+            </div>
+            <div
+              class="idea-chip idea-chip--four"
+              [class.is-gathered]="beat >= 2"
+            >
+              ↗ Objetivos
+            </div>
+            <div class="project-brief">
+              <span>UN PROYECTO COMPARTIDO</span
+              ><strong>Tu próxima web.</strong>
+              @for (
+                line of [
+                  "Identidad y estilo",
+                  "Contenido y secciones",
+                  "Funciones necesarias",
+                  "Una dirección acordada",
+                ];
+                track line;
+                let index = $index
+              ) {
+                <div class="brief-line" [class.is-ready]="beat >= index">
+                  <i>{{ beat >= index ? "✓" : "·" }}</i
+                  >{{ line }}
+                </div>
+              }
+            </div>
+            <div class="discovery-message">
+              {{
+                beat === 3
+                  ? "Ya tenemos una dirección. Empezamos a crear."
+                  : "Cada conversación añade una pieza."
+              }}
+            </div>
+          </div>
+        </div>
+        <div
+          class="scene-shell"
+          [class.is-active]="active === 1"
+          [attr.aria-hidden]="active !== 1"
+        >
+          <div
+            class="construction-scene"
+            [attr.data-building]="
+              visualProgress >= 0.4 ? 'connected' : 'building'
+            "
+          >
+            <div class="construction-status">
+              <i></i
+              >{{
+                beat === 3
+                  ? "Tu web ya tiene forma"
+                  : visualProgress >= 0.55
+                    ? "Todas las piezas conectadas"
+                    : visualProgress >= 0.4
+                      ? "Conectamos tus datos"
+                      : visualProgress >= 0.16
+                        ? "Damos vida al diseño"
+                        : "Cada pieza empieza aquí"
+              }}
+            </div>
+            <div class="build-workspace">
+              <svg
+                class="construction-flow"
+                viewBox="0 0 640 350"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M350 160C400 160 400 190 510 190M350 210C420 210 420 230 510 230"
+                />
+                <path
+                  class="flow-packets"
+                  d="M350 160C400 160 400 190 510 190M510 230C420 230 420 210 350 210"
+                />
+              </svg>
+              <div class="build-browser">
+                <div class="mini-browser-bar">● ● ● <span>tu-marca</span></div>
+                <div
+                  class="build-page"
+                  [class.has-content]="visualProgress >= 0.16"
+                >
+                  <div class="build-wireframe" aria-hidden="true">
+                    <div></div>
+                    <i></i><i></i><span></span>
+                    <section><b></b><b></b><b></b></section>
+                  </div>
+                  <div class="build-block build-nav assembled">
+                    TU MARCA <span>Inicio · Servicios · Contacto</span>
+                  </div>
+                  <div
+                    class="build-block build-hero"
+                    [class.assembled]="visualProgress >= 0.16"
+                  >
+                    <small>HECHA PARA TU NEGOCIO</small
+                    ><strong>Tu idea.<br />Ahora tiene forma.</strong>
+                    <div class="build-button">Conoce lo que hacemos ↗</div>
+                    <div class="build-art"></div>
+                  </div>
+                  <div class="build-cards">
+                    @for (
+                      card of ["Tus servicios", "Tus proyectos", "Tu contacto"];
+                      track card;
+                      let index = $index
+                    ) {
+                      <div
+                        class="build-block"
+                        [class.assembled]="
+                          visualProgress >= 0.28 + index * 0.04
+                        "
+                      >
+                        {{ card }}<i></i><i></i>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+              <div
+                class="build-link"
+                [class.is-connected]="visualProgress >= 0.4"
+              >
+                <span>{{ visualProgress >= 0.55 ? "✓" : "↔" }}</span>
+                {{
+                  visualProgress >= 0.55
+                    ? "DISEÑO + CONTENIDO + DATOS"
+                    : "CADA PIEZA ENCUENTRA SU LUGAR"
+                }}
+              </div>
+              <div
+                class="build-database"
+                [class.is-connected]="visualProgress >= 0.4"
+              >
+                <ng-container [ngTemplateOutlet]="database" /><strong
+                  >Base de datos</strong
+                >
+                @for (
+                  row of ["Contenido", "Proyectos", "Consultas"];
+                  track row;
+                  let index = $index
+                ) {
+                  <span
+                    class="database-row"
+                    [class.is-ready]="visualProgress >= 0.4 + index * 0.06"
+                    ><i></i>{{ row
+                    }}<b>{{
+                      visualProgress >= 0.4 + index * 0.06 ? "✓" : "—"
+                    }}</b></span
+                  >
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="scene-shell"
+          [class.is-active]="active === 2"
+          [attr.aria-hidden]="active !== 2"
+        >
+          <div class="connected-scene">
+            <svg
+              class="connected-flow"
+              viewBox="0 0 640 350"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M110 120H300M340 120H540M320 160V245M110 150Q110 275 270 275"
+              />
+              <path
+                class="flow-packets"
+                d="M110 120H300M340 120H540M320 160V245"
+              />
+              <path
+                class="flow-packets reverse-flow"
+                d="M300 135H110M540 135H340M320 245V160"
+              />
+            </svg>
+            <div class="network-node network-web">
+              <div class="network-web-icon">
+                <div class="mini-browser-bar">● ● ●</div>
+                <div class="network-page-lines"><i></i><i></i><i></i></div>
+              </div>
+              <strong>Tu web</strong><small>Recibe · Muestra · Envía</small>
+            </div>
+            <div class="network-node network-server">
+              <div class="server-rack"><i></i><i></i><i></i></div>
+              <strong>Servidor</strong><small>Conecta cada petición</small>
+            </div>
+            <div class="network-node network-db">
+              <ng-container [ngTemplateOutlet]="database" /><strong
+                >Base de datos</strong
+              ><small>Organiza · Guarda · Consulta</small>
+            </div>
+            <span class="data-label data-label--one">{{
+              beat === 0 ? "Consulta recibida" : "Petición ↔ Respuesta"
+            }}</span
+            ><span class="data-label data-label--two">{{
+              beat >= 2 ? "Datos organizados" : "Conexión activa"
+            }}</span>
+            <div class="support-card" [class.is-active]="beat === 3">
+              <div class="support-avatar">
+                <ng-container [ngTemplateOutlet]="person" />
+              </div>
+              <div>
+                <span>TRATO DIRECTO</span><strong>Seguimos a tu lado.</strong
+                ><small>{{
+                  beat === 3
+                    ? "Una nueva idea entra en el proyecto."
+                    : "Un canal para tus próximas ideas."
+                }}</small>
+              </div>
+              <i>✓</i>
+            </div>
+            <div class="client-request" [class.is-active]="beat === 3">
+              <span>¿Añadimos un nuevo servicio?</span
+              ><strong>Lo vemos contigo y planificamos la mejora. ↗</strong>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <button
-      type="button"
-      class="story-playback"
-      [attr.aria-pressed]="paused"
-      (click)="togglePlayback()"
-      [attr.aria-label]="
-        paused
-          ? 'Reanudar la demostración automática'
-          : 'Pausar la demostración automática'
-      "
-    >
-      <span aria-hidden="true">{{ paused ? "▷" : "Ⅱ" }}</span>
-      {{ paused ? "Reanudar" : "Pausar animación" }}
-    </button>
+    <div class="journey-copy">
+      <p class="eyebrow">{{ current.label }} / A TU MANERA</p>
+      <h3>{{ current.title }}</h3>
+      <p>{{ current.text }}</p>
+      <div class="journey-beats" aria-label="Explora esta escena">
+        @for (note of current.beats; track $index; let index = $index) {
+          <button
+            type="button"
+            (click)="seek(index)"
+            [attr.aria-pressed]="beat === index"
+          >
+            <i></i>{{ note }}
+          </button>
+        }
+      </div>
+      <div class="journey-actions">
+        <button
+          type="button"
+          (click)="togglePlayback()"
+          [disabled]="reduced"
+          [attr.aria-pressed]="paused"
+        >
+          {{
+            reduced
+              ? "Explora a tu ritmo"
+              : paused
+                ? "▷ Reanudar"
+                : "Ⅱ Pausar animación"
+          }}</button
+        ><a href="#contacto">Cuéntanos tu proyecto ↗</a>
+      </div>
+    </div>
   </div>
 </section>
+<ng-template #person
+  ><svg viewBox="0 0 90 90" fill="none" aria-hidden="true">
+    <circle cx="45" cy="31" r="13" />
+    <path d="M20 76V66C20 52 31 47 45 47S70 52 70 66V76" />
+    <path d="M36 49L45 59L54 49" /></svg
+></ng-template>
+<ng-template #database
+  ><svg
+    class="database-icon"
+    viewBox="0 0 100 90"
+    fill="none"
+    aria-hidden="true"
+  >
+    <ellipse cx="50" cy="17" rx="32" ry="12" />
+    <path
+      d="M18 17V65C18 81 82 81 82 65V17M18 33C18 49 82 49 82 33M18 49C18 65 82 65 82 49"
+    />
+    <circle cx="70" cy="58" r="2" /></svg
+></ng-template>

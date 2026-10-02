@@ -14,7 +14,6 @@ footer {
   color: #888;
   font-size: 12px;
   flex-wrap: wrap;
-
 }
 .footer-info p {
   margin: 0 0 8px;
@@ -37,7 +36,6 @@ footer {
   color: #fff;
 }
 .footer-links .footer-email {
-  display: inline-flex;
   overflow-wrap: anywhere;
 }
 .footer-email span {
@@ -60,14 +58,10 @@ footer {
   footer {
     flex-wrap: wrap;
     padding: 30px 6%;
+    align-items: flex-start;
   }
   footer p {
     display: none;
-  }
-  footer {
-    flex-wrap: wrap;
-    padding: 30px 6%;
-    align-items: flex-start;
   }
   .footer-links {
     width: 100%;
@@ -77,4 +71,3 @@ footer {
     display: inline-flex;
   }
 }
-
