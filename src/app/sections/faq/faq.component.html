@@ -1,0 +1,76 @@
+<section id="contacto" class="faq extra-section">
+  <div class="faq-intro">
+    <p class="eyebrow">03 / TU PRÓXIMO PROYECTO</p>
+    <h2>Tu idea merece&nbsp;<br />una buena <em>web.</em></h2>
+    <p class="faq-lead">
+      Resuelve tus primeras dudas y cuéntanos qué necesita tu empresa.
+    </p>
+    <div class="faq-contact">
+      <p>Hablemos de tu proyecto.<span>Empecemos a darle forma.</span></p>
+      <a appMailLink class="contact-email"></a>
+    </div>
+  </div>
+  <div class="faq-list">
+    <p class="eyebrow">PREGUNTAS FRECUENTES</p>
+    <details
+      (toggle)="layoutChange.emit()"
+      (transitionend)="onTransition($event)"
+    >
+      <summary>
+        <span class="faq-number" aria-hidden="true">01</span
+        ><span class="faq-question">¿Cuánto puede tardar el proyecto?</span
+        ><span class="faq-plus" aria-hidden="true"></span>
+      </summary>
+      <p>
+        El plazo depende del tamaño del proyecto y de la disponibilidad de los
+        materiales. Lo concretamos en la propuesta para que sepas qué calendario
+        estamos planteando.
+      </p>
+    </details>
+    <details
+      (toggle)="layoutChange.emit()"
+      (transitionend)="onTransition($event)"
+    >
+      <summary>
+        <span class="faq-number" aria-hidden="true">02</span
+        ><span class="faq-question">¿Qué necesito aportar?</span
+        ><span class="faq-plus" aria-hidden="true"></span>
+      </summary>
+      <p>
+        Los textos, el logotipo, las fotografías y los datos de contacto que
+        tengas. Si falta algún material, identificamos qué hay que preparar; no
+        necesitas llegar con todo terminado.
+      </p>
+    </details>
+    <details
+      (toggle)="layoutChange.emit()"
+      (transitionend)="onTransition($event)"
+    >
+      <summary>
+        <span class="faq-number" aria-hidden="true">03</span
+        ><span class="faq-question">¿Cómo se calcula el presupuesto?</span
+        ><span class="faq-plus" aria-hidden="true"></span>
+      </summary>
+      <p>
+        Según el número de páginas, la complejidad del diseño y el trabajo que
+        requiere cada función. La propuesta concreta qué incluye y su coste,
+        para que puedas valorarla antes de contratar.
+      </p>
+    </details>
+    <details
+      (toggle)="layoutChange.emit()"
+      (transitionend)="onTransition($event)"
+    >
+      <summary>
+        <span class="faq-number" aria-hidden="true">04</span
+        ><span class="faq-question">¿Y si ya tengo un dominio?</span
+        ><span class="faq-plus" aria-hidden="true"></span>
+      </summary>
+      <p>
+        Lo tenemos en cuenta al preparar la publicación. Revisamos dónde está
+        registrado y qué ajustes necesita para conectarlo a la nueva web,
+        considerando también el correo si utiliza ese dominio.
+      </p>
+    </details>
+  </div>
+</section>

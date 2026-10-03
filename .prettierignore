@@ -1,4 +1,4 @@
 node_modules/
 .angular/
 dist/
-.DS_Store
+package-lock.json

@@ -1,40 +1,30 @@
 # Zenqara Digital
 
-Proyecto Angular organizado en `paginaZenqara/`, con la página principal separada en HTML, TypeScript y SCSS.
+Proyecto Angular de la web de Zenqara Digital.
 
-## Desarrollo
+## Desarrollo local
 
-```sh
-cd paginaZenqara
+```bash
 npm ci
 npm start
 ```
 
 ## Compilación
 
-```sh
+```bash
 npm run build
 ```
 
-La web compilada se guarda en `dist/`, fuera de `paginaZenqara/`.
+La web compilada se guarda en `dist/`.
 
 ## Publicación
 
 La web está publicada en https://josuebarrueta.github.io/zenqara-digital/.
-El repositorio público `josueBarrueta/zenqara-digital` contiene solo los archivos compilados; el repositorio `josueBarrueta/zenqara-digital-codigo` conserva el código fuente privado.
-
-Para preparar una actualización, desde `paginaZenqara/`:
-
-```sh
-npm run check
-npm run build -- --base-href /zenqara-digital/
-```
-
-Después se actualizan los archivos del repositorio público con el contenido de `dist/`, conservando `.nojekyll`. GitHub Pages publica desde la raíz de su rama `main`. Los cambios en este repositorio de código fuente no se publican automáticamente.
+La web se publica automáticamente en GitHub Pages mediante GitHub Actions.
 
 ## Comprobaciones
 
-```sh
+```bash
 npm run check
 npm run build
 npm audit
@@ -44,7 +34,7 @@ npm audit
 
 ## Organización de la página
 
-`paginaZenqara/src/app/home/home.component.html` reúne los apartados. Cada uno vive en su propia carpeta dentro de `src/app/sections/`, fuera de `home`, con archivos `.component.html`, `.component.scss` y `.component.ts`:
+`src/app/home/home.component.html` reúne los apartados. Cada uno vive en su propia carpeta dentro de `src/app/sections/`, fuera de `home`, con archivos `.component.html`, `.component.scss` y `.component.ts`:
 
 - `site-header`: cabecera y navegación.
 - `hero`: portada (texto, logo y botones de entrada).

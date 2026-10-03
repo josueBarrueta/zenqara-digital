@@ -1,0 +1,12 @@
+<app-site-header />
+<main>
+  <app-hero />
+  <app-scroll-story />
+  <app-services (layoutChange)="refreshScroll()" />
+  <app-process />
+
+  <app-web-types />
+  <app-maintenance />
+  <app-faq (layoutChange)="refreshScroll()" />
+</main>
+<app-site-footer />
